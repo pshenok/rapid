@@ -1,2 +1,4 @@
-# snappy-api
 Snappy API
+================
+
+Create RESTful API snappy.
