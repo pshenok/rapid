@@ -57,19 +57,19 @@ export class Web implements IInterface {
 
 	public async start (): Promise<void> {
 		await new Promise((resolve, reject) => {
-			this.logger.info(`web: starting ${this.config.web.port}`);
+			this.logger.info(`HTTP SERVER: starting ${this.config.web.port}`);
 
 			this.server = this.app
 			.listen(this.config.web.port)
 			.on('listening', () => {
 				const address = this.server.address() as AddressInfo;
 
-				this.logger.info(`web: stared http://localhost:${address.port}`);
+				this.logger.info(`HTTP SERVER: stared http://localhost:${address.port}`);
 
 				return resolve();
 			})
 			.on('error', (err) => {
-				this.logger.error('web: failed');
+				this.logger.error('HTTP SERVER:: failed');
 
 				return reject(err);
 			});
@@ -78,9 +78,9 @@ export class Web implements IInterface {
 
 	public async stop (): Promise<void> {
 		if (this.server) {
-			this.logger.info('web: closing');
+			this.logger.info('HTTP SERVER: closing');
 			this.server.close();
-			this.logger.info('web: closed');
+			this.logger.info('HTTP SERVER: closed');
 		}
 	}
 

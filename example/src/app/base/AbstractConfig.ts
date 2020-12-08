@@ -78,4 +78,44 @@ export abstract class AbstractConfig {
 			throw new TypeError(`File reading of config key "${key}" with value ${value} fails with error: ${err.message}`);
 		}
 	}
+
+	protected getArrayString (key: string, defaultValue?: string[]): string[] {
+		const value = process.env[key];
+
+		if (value === undefined) {
+			if (defaultValue !== undefined) {
+				return defaultValue;
+			} else {
+				throw new TypeError(`Config key "${key}" MUST contain string. Got undefined`);
+			}
+		}
+
+		return value.split(',');
+	}
+
+	protected getArrayNumber (key: string, defaultValue?: number[]): number[] {
+		const value = process.env[key];
+
+		if (value === undefined) {
+			if (defaultValue !== undefined) {
+				return defaultValue;
+			} else {
+				throw new TypeError(`Config key "${key}" MUST contain valid number. Got undefined`);
+			}
+		}
+
+		if (value === '') {
+			throw new TypeError(`Config key "${key}" MUST contain valid number. Got ""`);
+		}
+
+		return value.split(',').map((item) => {
+			const num = Number(item);
+
+			if (Number.isFinite(num)) {
+				return num;
+			} else {
+				throw new TypeError(`Config key "${key}" MUST contain valid number. Got "${value}"`);
+			}
+		});
+	}
 }
