@@ -11,9 +11,11 @@ export class App {
 		private logger: Logger,
 		private config: Config,
 		private web: IAsyncInit,
+		private db: IAsyncInit,
 	) {
 		this.asyncInitList = [
 			this.web,
+			this.db,
 		];
 	}
 

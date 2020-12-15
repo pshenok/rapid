@@ -28,10 +28,10 @@ export class DogRepository implements IDogRepository {
 	}
 
 	public async get (input: IFindDogInput): Promise<Dog | null> {
-		const where = this.generateWhereFromInput(input);
-		const dog = await this.db.models.Dog.findOne({ where });
+			const where = this.generateWhereFromInput(input);
+			const dog = await this.db.models.Dog.findOne({ where });
 
-		return dog ? dog.toEntity() : null;
+			return dog ? dog.toEntity() : null;
 	}
 
 	private generateWhereFromInput (input: IFindDogInput): any {

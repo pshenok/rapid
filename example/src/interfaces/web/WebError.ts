@@ -1,6 +1,5 @@
 import {STATUS_CODES} from 'http';
 import stringify from 'json-stringify-safe';
-import _ from 'lodash';
 import {AppError} from '../../app/AppError';
 
 

@@ -4,6 +4,9 @@ import {App} from '../app/App';
 import {Logger} from '../app/Logger';
 import {Config} from '../app/Config';
 import {Web} from '../interfaces/web/Web';
+import { DogService } from '../domain/dog/DogService';
+import { DogRepository } from '../infra/db/repositories/DogRepository';
+import { Db } from '../infra/db/Db';
 
 
 export class Container {
@@ -22,11 +25,14 @@ export class Container {
 			logger: asClass(Logger).singleton(),
 
 			// Domain
+			dogService: asClass(DogService).singleton(),
 
 			// Interfaces
 			web: asClass(Web).singleton(),
 
-			// Libs
+			// Infra
+			db:            asClass(Db).singleton(),
+			dogRepository: asClass(DogRepository).singleton(),
 
 		});
 

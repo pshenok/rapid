@@ -1,4 +1,4 @@
-import { Dog }from './Dog';
+import { Dog } from './Dog';
 import { IListStructure } from '../domain.types';
 
 export interface IFindDogInput {
