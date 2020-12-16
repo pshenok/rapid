@@ -1,35 +1,31 @@
-import {Sequelize} from 'sequelize';
-import {IAsyncInit} from '../../types';
-import {Config} from '../../app/Config';
-import {Logger} from '../../app/Logger';
-import {DogModel} from './models/DogModel';
-import stringify from 'json-stringify-safe';
-
+import { Sequelize } from "sequelize";
+import { IAsyncInit } from "../../types";
+import { Config } from "../../app/Config";
+import { Logger } from "../../app/Logger";
+import { DogModel } from "./models/DogModel";
+import stringify from "json-stringify-safe";
 
 export class Db implements IAsyncInit {
-	private cfg: Config['infra']['db'];
+	private cfg: Config["infra"]["db"];
 	public sequelize!: Sequelize;
 
 	public models = {
-		Dog: DogModel,
+		Dog: DogModel
 	};
 
-	constructor (
-		private logger: Logger,
-		private config: Config,
-	) {
+	constructor(private logger: Logger, private config: Config) {
 		this.cfg = this.config.infra.db;
 	}
 
-	public async init (): Promise<void> {
-		const {host, port, db, user, pass} = this.cfg;
-		const {hosts, ports} = this.cfg.read;
+	public async init(): Promise<void> {
+		const { host, port, db, user, pass } = this.cfg;
+		const { hosts, ports } = this.cfg.read;
 		const write = {
-			host:     host,
-			port:     port,
+			host: host,
+			port: port,
 			database: db,
 			username: user,
-			password: pass,
+			password: pass
 		};
 		const read = [];
 
@@ -39,11 +35,11 @@ export class Db implements IAsyncInit {
 			}
 			hosts.forEach((item, i) => {
 				read.push({
-					host:     item,
-					port:     ports[i],
+					host: item,
+					port: ports[i],
 					database: db,
 					username: user,
-					password: pass,
+					password: pass
 				});
 			});
 		} else {
@@ -51,25 +47,25 @@ export class Db implements IAsyncInit {
 		}
 
 		this.sequelize = new Sequelize({
-			dialect:     this.cfg.dialect as any,
+			dialect: this.cfg.dialect as any,
 			replication: {
 				write: write,
-				read:  read,
+				read: read
 			},
 			dialectOptions: {
-				timezone: 'auto',
+				timezone: "auto"
 			},
 			logging: (sql, params: any) => {
-				return this.logger.info('SQL Query', {
-					sql:  sql,
-					bind: params && params.bind,
+				return this.logger.info("SQL Query", {
+					sql: sql,
+					bind: params && params.bind
 				});
-			},
+			}
 		});
 
-		Object.keys(this.models).forEach((name) => {
+		Object.keys(this.models).forEach(name => {
 			this.logger.info(`Init model ${name}`);
-			((this.models as any)[name]).initWith(this.sequelize);
+			(this.models as any)[name].initWith(this.sequelize);
 		});
 
 		try {
@@ -77,8 +73,7 @@ export class Db implements IAsyncInit {
 
 			await this.sequelize.authenticate();
 
-			this.logger.info('Connected to DB');
-
+			this.logger.info("Connected to DB");
 		} catch (err) {
 			this.logger.error(`Failed to connect to DB: ${stringify(err)}`);
 
@@ -86,15 +81,15 @@ export class Db implements IAsyncInit {
 		}
 	}
 
-	public async start (): Promise<void> {
-		Object.keys(this.models).forEach((name) => {
-			((this.models as any)[name]).initRelations();
+	public async start(): Promise<void> {
+		Object.keys(this.models).forEach(name => {
+			(this.models as any)[name].initRelations();
 		});
 	}
 
-	public async stop (): Promise<void> {
-		this.logger.info('Disconnecting from DB');
+	public async stop(): Promise<void> {
+		this.logger.info("Disconnecting from DB");
 		await this.sequelize.close();
-		this.logger.info('Disconnected from DB');
+		this.logger.info("Disconnected from DB");
 	}
 }

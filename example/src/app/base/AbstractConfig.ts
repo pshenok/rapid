@@ -1,8 +1,7 @@
-import fs from 'fs';
-
+import fs from "fs";
 
 export abstract class AbstractConfig {
-	protected getNumber (key: string, defaultValue?: number): number {
+	protected getNumber(key: string, defaultValue?: number): number {
 		const value = process.env[key];
 
 		if (value === undefined) {
@@ -13,7 +12,7 @@ export abstract class AbstractConfig {
 			}
 		}
 
-		if (value === '') {
+		if (value === "") {
 			throw new TypeError(`Config key "${key}" MUST contain valid number. Got ""`);
 		}
 
@@ -26,7 +25,7 @@ export abstract class AbstractConfig {
 		}
 	}
 
-	protected getString (key: string, defaultValue?: string): string {
+	protected getString(key: string, defaultValue?: string): string {
 		const value = process.env[key];
 
 		if (value === undefined) {
@@ -40,7 +39,7 @@ export abstract class AbstractConfig {
 		return value;
 	}
 
-	protected getBoolean (key: string, defaultValue?: boolean): boolean {
+	protected getBoolean(key: string, defaultValue?: boolean): boolean {
 		const value = process.env[key];
 
 		if (value === undefined) {
@@ -51,35 +50,34 @@ export abstract class AbstractConfig {
 			}
 		}
 
-		if (value === 'true') {
+		if (value === "true") {
 			return true;
-		} else if (value === 'false') {
+		} else if (value === "false") {
 			return false;
 		} else {
 			throw new TypeError(`Config key "${key}" MUST contain valid boolean (true, false). Got "${value}"`);
 		}
 	}
 
-	protected getFile (key: string): string {
+	protected getFile(key: string): string {
 		const value = process.env[key];
 
 		if (value === undefined) {
 			throw new TypeError(`Config key "${key}" MUST contain path to file. Got undefined`);
 		}
 
-		if (value === '') {
+		if (value === "") {
 			throw new TypeError(`Config key "${key}" MUST contain path to file. Got ""`);
 		}
 
 		try {
-			return fs.readFileSync(value, { encoding: 'utf8' });
-
+			return fs.readFileSync(value, { encoding: "utf8" });
 		} catch (err) {
 			throw new TypeError(`File reading of config key "${key}" with value ${value} fails with error: ${err.message}`);
 		}
 	}
 
-	protected getArrayString (key: string, defaultValue?: string[]): string[] {
+	protected getArrayString(key: string, defaultValue?: string[]): string[] {
 		const value = process.env[key];
 
 		if (value === undefined) {
@@ -90,10 +88,10 @@ export abstract class AbstractConfig {
 			}
 		}
 
-		return value.split(',');
+		return value.split(",");
 	}
 
-	protected getArrayNumber (key: string, defaultValue?: number[]): number[] {
+	protected getArrayNumber(key: string, defaultValue?: number[]): number[] {
 		const value = process.env[key];
 
 		if (value === undefined) {
@@ -104,11 +102,11 @@ export abstract class AbstractConfig {
 			}
 		}
 
-		if (value === '') {
+		if (value === "") {
 			throw new TypeError(`Config key "${key}" MUST contain valid number. Got ""`);
 		}
 
-		return value.split(',').map((item) => {
+		return value.split(",").map(item => {
 			const num = Number(item);
 
 			if (Number.isFinite(num)) {

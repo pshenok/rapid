@@ -1,26 +1,17 @@
-import {IAsyncInit} from '../types';
-import stringify from 'json-stringify-safe';
-import {Config} from './Config';
-import {Logger} from './Logger';
-
+import { IAsyncInit } from "../types";
+import stringify from "json-stringify-safe";
+import { Config } from "./Config";
+import { Logger } from "./Logger";
 
 export class App {
 	private asyncInitList: IAsyncInit[] = [];
 
-	constructor (
-		private logger: Logger,
-		private config: Config,
-		private web: IAsyncInit,
-		private db: IAsyncInit,
-	) {
-		this.asyncInitList = [
-			this.web,
-			this.db,
-		];
+	constructor(private logger: Logger, private config: Config, private web: IAsyncInit, private db: IAsyncInit) {
+		this.asyncInitList = [this.web, this.db];
 	}
 
-	public async init (): Promise<void> {
-		this.logger.info('app.init()');
+	public async init(): Promise<void> {
+		this.logger.info("app.init()");
 		this.logger.debug(`Config: ${stringify(this.config)}`);
 
 		for (const obj of this.asyncInitList) {
@@ -30,8 +21,8 @@ export class App {
 		}
 	}
 
-	public async start (): Promise<void> {
-		this.logger.info('app.start()');
+	public async start(): Promise<void> {
+		this.logger.info("app.start()");
 
 		for (const obj of this.asyncInitList) {
 			this.logger.info(`starting ${obj.constructor.name}`);
@@ -40,12 +31,12 @@ export class App {
 		}
 	}
 
-	public async stop (messages: string[] = []): Promise<void> {
-		messages.forEach((message) => {
+	public async stop(messages: string[] = []): Promise<void> {
+		messages.forEach(message => {
 			this.logger.info(String(message));
 		});
 
-		this.logger.info('app.stop()');
+		this.logger.info("app.stop()");
 
 		for (const obj of this.asyncInitList) {
 			this.logger.info(`stopping ${obj.constructor.name}`);

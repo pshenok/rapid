@@ -1,9 +1,8 @@
-import {SchemaLike} from 'joi';
-
+import { SchemaLike } from "joi";
 
 export interface IHandlerData {
 	description: string;
-	method: 'GET' | 'POST' | 'PUT' |'PATCH' | 'DELETE';
+	method: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
 	path: string;
 	validate: {
 		query?: SchemaLike;
@@ -22,8 +21,8 @@ export interface IHandlerData {
 	processReq?: (req: any, res?: any) => any;
 }
 
-export function handler (handlerData: IHandlerData) {
-	return function (target: any, propertyKey: string, descriptor: PropertyDescriptor) {
-		Reflect.defineMetadata('handler:data', handlerData, target, propertyKey);
+export function handler(handlerData: IHandlerData) {
+	return function(target: any, propertyKey: string, descriptor: PropertyDescriptor) {
+		Reflect.defineMetadata("handler:data", handlerData, target, propertyKey);
 	};
 }
