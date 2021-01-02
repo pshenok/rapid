@@ -1,4 +1,4 @@
-import { AbstractConfig } from "./base/AbstractConfig";
+import { AbstractConfig } from "./AbstractConfig";
 
 const WEB_PORT = 3000;
 const BODY_LIMIT = 10485760; // 10 MB;
