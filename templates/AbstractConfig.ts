@@ -1,7 +1,7 @@
 import fs from 'fs';
 import dedent from 'dedent';
 
-export default function createAbstractConfig(path) {
+export default function createAbstractConfig(path: string): void {
 	fs.writeFileSync(path, dedent`
 	import fs from "fs";
 
