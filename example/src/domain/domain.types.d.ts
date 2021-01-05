@@ -1,4 +1,3 @@
-
 export interface IListData {
 	skip?: number;
 	limit?: number;

@@ -1,5 +1,5 @@
-import { Dog }from './Dog';
-import { IListStructure } from '../domain.types';
+import { Dog } from "./Dog";
+import { IListStructure } from "../domain.types";
 
 export interface IFindDogInput {
 	id?: string;
@@ -8,7 +8,7 @@ export interface IFindDogInput {
 }
 
 export interface IDogRepository {
-	create (dogData: Dog): Promise<Dog>;
-	get (input: IFindDogInput): Promise<Dog | null>;
-	list (input: IFindDogInput): Promise<IListStructure<Dog>>;
+	create(dogData: Dog): Promise<Dog>;
+	get(input: IFindDogInput): Promise<Dog | null>;
+	list(input: IFindDogInput): Promise<IListStructure<Dog>>;
 }

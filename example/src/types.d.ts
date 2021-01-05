@@ -1,4 +1,3 @@
-
 export interface IAsyncInit {
 	init(): Promise<void>;
 

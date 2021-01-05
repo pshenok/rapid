@@ -14,7 +14,13 @@
     "test:w": "jest --watch",
     "coverage": "jest --coverage",
     "lint": "eslint --quiet --ext ts,js .",
-    "lint:fix": "eslint --fix --ext .ts ."
+    "lint:fix": "eslint --fix --ext .ts .",
+    "migrate:up": "node node_modules/.bin/sequelize db:migrate",
+    "migrate:down": "node node_modules/.bin/sequelize db:migrate:undo",
+    "migrate:status": "node node_modules/.bin/sequelize db:migrate:status",
+    "migrate:dev:up": "node -r dotenv/config node_modules/.bin/sequelize db:migrate",
+    "migrate:dev:down": "node -r dotenv/config node_modules/.bin/sequelize db:migrate:undo",
+    "migrate:dev:status": "node -r dotenv/config node_modules/.bin/sequelize db:migrate:status"
   },
   "author": "Kostyantyn Pshenychnyy",
   "license": "UNLICENSED",
@@ -34,10 +40,11 @@
     "lodash": "^4.17.11",
     "log4js": "5",
     "moment": "^2.24.0",
+    "pg": "^8.5.1",
     "randomstring": "^1.1.5",
     "reflect-metadata": "^0.1.13",
     "require-dir": "^1.2.0",
-    "sequelize": "^5.14.0",
+    "sequelize": "^6.3.5",
     "sequelize-cli": "^5.5.0",
     "swagger-ui-express": "^4.0.2",
     "uuid": "^3.3.2"

@@ -1,4 +1,4 @@
-declare module 'nock' {
+declare module "nock" {
 	const nock: {
 		[k: string]: any;
 		(...args: any[]): any;

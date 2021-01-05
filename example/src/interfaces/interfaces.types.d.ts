@@ -1,5 +1,5 @@
-import {IAsyncInit} from '../types';
+import { IAsyncInit } from "../types";
 
 export interface IInterface extends IAsyncInit {
-	getPort (): number;
+	getPort(): number;
 }
