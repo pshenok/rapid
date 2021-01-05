@@ -23,7 +23,7 @@
     "migrate:dev:status": "node -r dotenv/config node_modules/.bin/sequelize db:migrate:status"
   },
   "author": "Kostyantyn Pshenychnyy",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "private": true,
   "dependencies": {
     "awilix": "^4.2.2",
