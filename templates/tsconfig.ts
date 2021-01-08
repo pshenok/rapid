@@ -1,7 +1,7 @@
 import fs from 'fs';
 import dedent from 'dedent';
 
-export default function createTsConfig(path: string): void {
+export function createTsConfig(path: string): void {
 	fs.writeFileSync(path, dedent`{
 		"compilerOptions": {
 			/* Basic Options */
@@ -77,5 +77,22 @@ export default function createTsConfig(path: string): void {
 			"src/**/*.test.ts"
 		]
 	}
+	`)
+}
+
+export function createTsLintConfig(path: string): void {
+	fs.writeFileSync(path, dedent`{
+		"extends": "./tsconfig.json",
+		"include": [
+			"src/**/*",
+			"sequelize/**/*",
+			"src/**/*.spec.ts",
+			"src/**/*.e2e.ts",
+			"src/**/*.test.ts"
+		],
+		"exclude": [
+			"node_modules"
+		]
+	}	
 	`)
 }
