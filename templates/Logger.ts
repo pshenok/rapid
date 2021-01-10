@@ -1,7 +1,7 @@
 import fs from 'fs';
 import dedent from 'dedent';
 
-export default function createLogger(path: string): void {
+export function createLogger(path: string): void {
 	fs.writeFileSync(path, dedent`
 	import log4js from "log4js";
 	import stringify from "json-stringify-safe";

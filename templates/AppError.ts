@@ -1,7 +1,7 @@
 import fs from 'fs';
 import dedent from 'dedent';
 
-export default function createAppError(path: string): void {
+export function createAppError(path: string): void {
 	fs.writeFileSync(path, dedent`
 	import _ from "lodash";
 	import stringify from "json-stringify-safe";

@@ -36,3 +36,9 @@ function copyRecursiveSync(source: string, target: string) {
     }
   }
 }
+
+function createBaseProject(path: string, projectName: string): void {
+  fs.mkdirSync(`${path}/${projectName}`);
+}
+
+createBaseProject("./", "test");
