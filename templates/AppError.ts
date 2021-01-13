@@ -2,7 +2,7 @@ import fs from 'fs';
 import dedent from 'dedent';
 
 export function createAppError(path: string): void {
-	fs.writeFileSync(path, dedent`
+	fs.writeFileSync(`${path}/AppError.ts`, dedent`
 	import _ from "lodash";
 	import stringify from "json-stringify-safe";
 	

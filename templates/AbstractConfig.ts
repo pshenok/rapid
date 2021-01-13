@@ -2,7 +2,7 @@ import fs from 'fs';
 import dedent from 'dedent';
 
 export function createAbstractConfig(path: string): void {
-	fs.writeFileSync(path, dedent`
+	fs.writeFileSync(`${path}/AbstractConfig.ts`, dedent`
 	import fs from "fs";
 
 	export abstract class AbstractConfig {

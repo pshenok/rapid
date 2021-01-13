@@ -2,7 +2,7 @@ import fs from 'fs';
 import dedent from 'dedent';
 
 export function createLogger(path: string): void {
-	fs.writeFileSync(path, dedent`
+	fs.writeFileSync(`${path}/Logger.ts`, dedent`
 	import log4js from "log4js";
 	import stringify from "json-stringify-safe";
 	import { Config } from "./Config";
@@ -83,12 +83,6 @@ export function createLogger(path: string): void {
 	
 		public get traceId(): string {
 			return String(this.context.get("traceId") || "");
-	
-			if (this.context.active) {
-				return String(this.context.get("traceId") || "");
-			} else {
-				return "";
-			}
 		}
 	
 		public trace(msg: string, data?: object): void {

@@ -78,12 +78,6 @@ export class Logger {
 
 	public get traceId(): string {
 		return String(this.context.get("traceId") || "");
-
-		if (this.context.active) {
-			return String(this.context.get("traceId") || "");
-		} else {
-			return "";
-		}
 	}
 
 	public trace(msg: string, data?: object): void {

@@ -2,7 +2,7 @@ import fs from 'fs';
 import dedent from 'dedent';
 
 export function createESLintConfig(path: string): void {
-	fs.writeFileSync(path, dedent`
+	fs.writeFileSync(`${path}/.eslintrc.js`, dedent`
 	module.exports = {
 		parser: '@typescript-eslint/parser',
 		plugins: ['@typescript-eslint'],

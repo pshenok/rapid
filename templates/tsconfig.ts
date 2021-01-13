@@ -2,7 +2,7 @@ import fs from 'fs';
 import dedent from 'dedent';
 
 export function createTsConfig(path: string): void {
-	fs.writeFileSync(path, dedent`{
+	fs.writeFileSync(`${path}/tsconfig.json`, dedent`{
 		"compilerOptions": {
 			/* Basic Options */
 			// "incremental": true,                   /* Enable incremental compilation */
