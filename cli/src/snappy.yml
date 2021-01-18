@@ -1,3 +1,10 @@
-project-name: 
-  config:
-    
+project-name: "Snappy"
+config:
+  interfaces: 
+    - http
+  entities:
+    dog:
+      fields:
+        id: "uuid"
+        name: "string"
+        breed: "string"

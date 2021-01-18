@@ -43,8 +43,8 @@ function copyRecursiveSync(source: string, target: string) {
   }
 }
 
-function createBaseProject(path: string, projectName: string): void {
-  const projectPath = `${path}/${projectName}`;
+function createBaseProjectFiles(projectName: string, path?: string): void {
+  const projectPath = `${path || '.'}/${projectName}`;
   const srcPath = `${projectPath}/src`;
   const appPath = `${projectPath}/src/app`;
   fs.mkdirSync(projectPath);
@@ -62,4 +62,5 @@ function createBaseProject(path: string, projectName: string): void {
   createAppError(appPath);
   createLogger(appPath);
 
+  console.log("\x1b[37m", `Congrats!\nBase Snappy Project built in ${projectPath}`)
 }
