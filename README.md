@@ -1,4 +1,4 @@
-Snappy API
+RAPID
 ================
 
-Create API snappy.
+R**API**D
