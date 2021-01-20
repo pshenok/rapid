@@ -1,2 +1,2 @@
-# ProcessingGateway
+# Snappy API
 

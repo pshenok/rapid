@@ -1,0 +1,17 @@
+project-name: "Snappy"
+description: "My API"
+config:
+  interfaces: 
+    - type: rest
+      validation: true
+    - type: rpc
+      validation: true
+  entities:
+    dog:
+      fields:
+        id: 
+          type: "string"
+        name: 
+          type: "string"
+        breed: 
+          type: "string"
