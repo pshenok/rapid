@@ -6,7 +6,13 @@ import { createJestConfigJSON, createJestE2EConfigJSON } from "../../../template
 import { createLogger } from "../../../templates/Logger";
 import { createTsConfig } from "../../../templates/tsconfig";
 
-export function createBaseProjectFiles(projectName: string, configPath: string, path?: string): void {
+interface ICreateBaseProjectInput {
+  projectName: string;
+  configPath: string;
+  path?: string;
+}
+
+export function createBaseProject({ projectName, configPath, path }: ICreateBaseProjectInput): void {
   const projectPath = `${path || '.'}/${projectName}`;
   const srcPath = `${projectPath}/src`;
   const appPath = `${projectPath}/src/app`;
