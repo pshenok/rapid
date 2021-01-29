@@ -13,7 +13,7 @@ interface ICreateBaseProjectInput {
 }
 
 export function createBaseProject({ projectName, configPath, path }: ICreateBaseProjectInput): void {
-  const projectPath = `${path || '.'}/${projectName}`;
+  const projectPath = `${path || process.cwd()}/${projectName}`;
   const srcPath = `${projectPath}/src`;
   const appPath = `${projectPath}/src/app`;
   fs.mkdirSync(projectPath);
@@ -31,5 +31,5 @@ export function createBaseProject({ projectName, configPath, path }: ICreateBase
   createAppError(appPath);
   createLogger(appPath);
 
-  console.log("\x1b[37m", `Congrats!\nBase Snappy Project built in ${projectPath}`)
+  console.log("\x1b[37m", `\x1b[33mCongrats!\nBase Snappy Project built in ${projectPath}`)
 }
